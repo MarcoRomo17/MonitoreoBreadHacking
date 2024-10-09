@@ -15,5 +15,11 @@
   "workspaces": [
     "src/MonitoreoBH_backend",
     "src/MonitoreoBH_frontend"
-  ]
+  ],
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  }
 }
