@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import RP from './RP';
+import { ReportForm } from './ReportFrom';
 
 
 const router = createBrowserRouter([
@@ -15,10 +15,9 @@ const router = createBrowserRouter([
     element: <App></App>,
   },
   {
-    path: "/RP",
-    element: <RP></RP>,
+    path: "/RF",
+    element: <ReportForm></ReportForm>
   },
-
 
 ]);
 
