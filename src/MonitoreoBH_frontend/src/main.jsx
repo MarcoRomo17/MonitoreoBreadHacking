@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ReportForm } from './ReportFrom';
+import { Marco } from './Marco';
 
 
 const router = createBrowserRouter([
@@ -18,6 +19,15 @@ const router = createBrowserRouter([
     path: "/RF",
     element: <ReportForm></ReportForm>
   },
+  {
+    path: "/RF",
+    element: <ReportForm></ReportForm>
+  },
+  {
+    path: "/PM",
+    element: <Marco></Marco>
+  }
+
 
 ]);
 

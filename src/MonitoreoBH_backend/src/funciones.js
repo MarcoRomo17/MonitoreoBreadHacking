@@ -25,10 +25,13 @@ export const handleGetCurrentLocation = (setCurrentLocation, setLocationError) =
 
 // Geocodificación inversa: convierte latitud/longitud en una dirección
 export const reverseGeocode = async (lat, lon, setReverseGeocodedAddress) => {
+  
+  
   try {
     const response = await axios.get(
       `https://us1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${lat}&lon=${lon}&format=json`
     );
+  
     const address = response.data.display_name;
     setReverseGeocodedAddress(address);  // Guardar la dirección obtenida
   } catch (error) {

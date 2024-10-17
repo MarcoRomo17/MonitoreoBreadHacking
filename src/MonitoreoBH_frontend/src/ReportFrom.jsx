@@ -5,6 +5,7 @@ import { Card, Container, Form, Button, Alert, ListGroup } from "react-bootstrap
 import { handleGetCurrentLocation, reverseGeocode, fetchSuggestions } from "../../MonitoreoBH_backend/src/funciones.js";
 
 export const ReportForm = () => {
+  
   const [reportType, setReportType] = useState("");
   const [manualAddress, setManualAddress] = useState("");
   const [suggestions, setSuggestions] = useState([]);
