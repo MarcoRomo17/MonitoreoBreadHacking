@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { ReportForm } from './ReportFrom';
 import { Marco } from './Marco';
+import { ReportDescription } from './ReportDescription';
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/PM",
     element: <Marco></Marco>
+  },
+  {
+    path: "/RD",
+    element: <ReportDescription></ReportDescription>
   }
 
 
