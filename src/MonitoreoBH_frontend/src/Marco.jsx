@@ -8,6 +8,8 @@ export const Marco = () => {
   const [Colonia, setColonia] = useState('');
   const [ColonyArray, setColonyArray] = useState([]);
   const [filteredColonies, setFilteredColonies] = useState([]);
+  const [tipoIncidencia, settipoIncidencia] = useState('');
+  const [descripcion, setdescripcion] = useState('');
 
   const recogerMunicipio = (e) => {
     e.preventDefault();
@@ -35,6 +37,20 @@ export const Marco = () => {
     setColonia(colonia);
   };
 
+  const recogerIncidencia = (e) => {
+    e.preventDefault();
+    const incidenciaTemporal = e.target.value;
+    settipoIncidencia(incidenciaTemporal);
+    console.log(incidenciaTemporal, 'de recogerIncidencia');
+  };
+
+  const recogerDescripcion = (e) => {
+    e.preventDefault();
+    const descripcionTemporal = e.target.value;
+    setdescripcion(descripcionTemporal);
+    console.log(descripcionTemporal, 'de recogerDescripcion');
+  };
+
   const handleColonySearch = (e) => {
     const query = e.target.value.toLowerCase();
     setColonia(query); // Actualiza el input de colonia con lo que el usuario escribe
@@ -54,7 +70,7 @@ export const Marco = () => {
       <Card>
         <Form>
           <Form.Label>Selecciona tu estado</Form.Label>
-          <Form.Select name="SE" onChange={recogerMunicipio}>
+          <Form.Select name="SE" onChange={recogerMunicipio}>{/**Form del municipio */}
             <option value="">Seleccione una opción</option>
             <option value="Aguascalientes">Aguascalientes</option>
             <option value="Asientos">Asientos</option>
@@ -68,15 +84,28 @@ export const Marco = () => {
             <option value="San José de Gracia">San José de Gracia</option>
             <option value="Tepezala">Tepezala</option>
           </Form.Select>
-          <Form.Control value={Colonia} onChange={handleColonySearch} onMouseOver={pruebaDatos}/>
+          <Form.Control value={Colonia} onChange={handleColonySearch} onMouseOver={pruebaDatos}/>{/**Form de la colonia, en el cual se tiene autocompletado */}
 
-          <ListGroup>
+          <ListGroup>{/**Aqui es donde se van generando las sugerencias y se les tiene que dar click para que se guarden */}
             {filteredColonies.map((colonia, index) => (
               <ListGroupItem key={index} onClick={() => recogerLista(colonia)}>
                 {colonia}
               </ListGroupItem>
             ))}
           </ListGroup>
+          <Form.Label>¿Qué tipo de incidencia hubo?</Form.Label>
+          <Form.Select onChange={recogerIncidencia}> 
+          <option value="">Seleccione una opción</option>
+            <option value="Robo">Robo</option>
+            <option value="Accidente">Accidente</option>
+            <option value="Homicidio">Homicidio</option>
+            <option value="Estafa">Estafa</option>
+            <option value="etc.">etc.</option>
+          </Form.Select>
+
+        <Form.Label>Ingresa la descripcion del caso</Form.Label>
+        <Form.Control onChange={recogerDescripcion}></Form.Control>
+
         </Form>
       </Card>
     </Container>
