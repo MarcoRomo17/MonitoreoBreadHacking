@@ -67,14 +67,28 @@ const recogerLista=(colonia)=>{
 
                 <ListGroup>
                 {ColonyArray?.map((colonia, index) => (
-            <ListGroup.Item key={index} onClick={() => recogerLista(colonia)}>
+            <ListGroupItem key={index} onClick={() => recogerLista(colonia)}>
               {colonia}
-            </ListGroup.Item>
+            </ListGroupItem>
           ))}
                 </ListGroup>
             </Form>
+            {/* Aqui llamaria a  una  ventana emergente del SweetAlert y que ahi vayan apareciendo los reportes.     
+            Si es con lo de SweetAlert, deberia de aparecer que al dar click en el reporte se le agregue +1
+            al reporte. Y deberia de tener dos botones. Uno en el que se cancele la accion y otro para 
+            dar detalles  
             
+            Al dar click en dar 'detalles', debemos darle 
 
+
+            Municipio
+            Colonia
+            tipo
+            descripcion
+            fecha y hora
+
+            */}
+            
         </Card>
     </Container>
     );
