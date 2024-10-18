@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Container, Form, Button, Alert, ListGroup, Modal } from "react-bootstrap";
-import { handleGetCurrentLocation, reverseGeocode, fetchSuggestions } from "../../MonitoreoBH_backend/src/index.ts";
+import { handleGetCurrentLocation, reverseGeocode, fetchSuggestions } from "../../MonitoreoBH_backend/src/funciones.js";
+import { existingReports } from "../../MonitoreoBH_backend/Rp.js";
+import { TC } from "../../MonitoreoBH_backend/src/TC.js";
+import { Autobusqueda } from "../../MonitoreoBH_backend/src/Autobusqueda.js";
+
 
 // Componente que maneja el formulario de reportes
 export const ReportForm2 = () => {
@@ -14,7 +18,42 @@ export const ReportForm2 = () => {
   const [locationError, setLocationError] = useState(null); // Errores de geolocalización
   const [reverseGeocodedAddress, setReverseGeocodedAddress] = useState(""); // Dirección obtenida de las coordenadas actuales
   const [currentDateTime, setCurrentDateTime] = useState(""); // Fecha y hora actual
- // API key para las peticiones de geocodificación
+  const [edo, setedo] = useState('');
+  const [Colonia, setColonia] = useState('');
+  const [ColonyArray, setColonyArray] = useState();
+
+
+  /*<form action="" className="select"></form>*/
+
+  const recogerMunicipio=(e)=>{//Recoge el estado seleccionado en el Form.Select
+  e.preventDefault();
+  const edoTemporal = e.target.value
+  setedo(edoTemporal);
+  console.log(edoTemporal)
+
+  }
+
+  const pruebaDatos=(e)=>{//llama a la funcion de backend TC, mandandole como parametro el estado seleccionado anteriormente
+  e.preventDefault();
+  const aryColonia=TC(edo)
+  console.log(aryColonia,'Soy aryColonia');
+  setColonyArray(Autobusqueda(aryColonia))
+
+  }
+
+  const recogerColonia=(e)=>{//manda el arreglo de las colonias
+      e.preventDefault();
+      const coloniaTemporal=e.target.value
+      console.log(coloniaTemporal)
+    setColonia(coloniaTemporal)
+  }
+
+  const recogerLista=(colonia)=>{
+  const objDeLaLista=colonia
+      console.log(objDeLaLista)
+      setColonia(colonia)
+  }
+
 
   // Estado para manejar la visibilidad del modal de reportes similares
   const [showModal, setShowModal] = useState(false);
@@ -22,36 +61,7 @@ export const ReportForm2 = () => {
 
   const handleClose = () => setShowModal(false); // Función para cerrar el modal
   
-  // Simulación de almacenamiento de reportes existentes (para comparación)
-  const existingReports = [
-    {
-      id: 1,
-      lat: 21.899815,
-      lon: -102.248093,
-      address: "Dirección 1",
-      reportType: "Pelea Callejera",
-      dateTime: "2024-10-10 15:30",
-      description: "Estan Golpeando a Manuel",
-    },
-    {
-      id: 2,
-      lat: 21.895,
-      lon: -102.249,
-      address: "Dirección 2",
-      reportType: "Accidente Vehicular",
-      dateTime: "2024-10-11 12:00",
-      description: "Estan atropellando a Manuel",
-    },
-    {
-      id: 3,
-      lat: 21.8436,
-      lon: -102.2602,
-      address: "Dirección 1",
-      reportType: "Intento de Violacion",
-      dateTime: "2024-10-10 15:30",
-      description: "Estan violando a Manuel",
-    },
-  ];
+
   // useEffect para obtener sugerencias solo si se está ingresando una dirección manual
   useEffect(() => {
     if (manualAddress.length > 2 && !useCurrentLocation) {
@@ -137,7 +147,7 @@ export const ReportForm2 = () => {
                         {report.description}
                       </Card.Text>
                       <Card.Text>
-                        Dirección: {reverseGeocodedAddress})
+                        Dirección: {report.address}
                       </Card.Text>
                       <Button variant="primary" href='/Detalles'>
                         Complementar Reporte
@@ -159,12 +169,12 @@ export const ReportForm2 = () => {
       </Modal>
       <div className="bg-dark min-vh-100">
         <Container className="mt-5 bg-dark ">
-          <Card>
+          <Card style={{backgroundColor:"#4e4d4d"}}>
             <Card.Body>
-              <Card.Title>Registrar una Denuncia</Card.Title>
+              <Card.Title style={{color:"white"}}>Registrar una Denuncia</Card.Title>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                <Form.Label>Fecha y Hora del Reporte</Form.Label>
+                <Form.Label style={{color:"white"}}>Fecha y Hora del Reporte</Form.Label>
                 <Form.Control
                   type="text"
                   value={currentDateTime}
@@ -174,7 +184,7 @@ export const ReportForm2 = () => {
 
                 {/* Selección del tipo de reporte */}
                 <Form.Group className="mb-3">
-                  <Form.Label>Tipo de Reporte</Form.Label>
+                  <Form.Label style={{color:"white"}}>Tipo de Reporte</Form.Label>
                   <Form.Select
                     value={reportType}
                     onChange={(e) => setReportType(e.target.value)}
@@ -187,13 +197,13 @@ export const ReportForm2 = () => {
                     <option value="robo_vehiculos">Robo a Vehículos</option>
                     <option value="personas_desaparecidas">Personas Desaparecidas</option>
                     <option value="lesiones">Lesiones</option>
-                    <option value="delitos_sexuales">Delitos Sexuales</option>
+                    <option value="delitos_sexuales">Intento de violacion</option>
                   </Form.Select>
                 </Form.Group>
 
                 {/* Opción para ingresar manualmente la dirección o usar ubicación actual */}
                 <Form.Group className="mb-3">
-                  <Form.Check
+                  <Form.Check style={{color:"white"}}
                     type="checkbox"
                     label="Usar mi ubicación actual"
                     checked={useCurrentLocation}
@@ -204,48 +214,42 @@ export const ReportForm2 = () => {
 
                 {/* Campo para ingresar la dirección manual */}
                 {!useCurrentLocation && (
-                  <Form.Group className="mb-3">
-                    <Form.Label>Dirección (Manual)</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Ingresa la dirección manualmente"
-                      value={manualAddress}
-                      onChange={(e) => setManualAddress(e.target.value)}
-                      required={!useCurrentLocation}
-                    />
-                    {/* Mostrar las sugerencias de autocompletado */}
-                    {suggestions.length > 0 && (
-                      <ListGroup className="mt-2">
-                        {suggestions.map((suggestion) => (
-                          <ListGroup.Item
-                            key={suggestion.place_id}
-                            onClick={() => handleSuggestionClick(suggestion)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {suggestion.display_name}
-                          </ListGroup.Item>
-                        ))}
-                      </ListGroup>
-                    )}
-                  </Form.Group>
-                )}
-
-                {/* Mostrar la ubicación actual */}
-                {useCurrentLocation && (
-                  <Form.Group className="mb-3">
-                    <Form.Label>Ubicación Actual</Form.Label>
-                    {reverseGeocodedAddress ? (
-                      <Alert variant="secondary">{reverseGeocodedAddress}</Alert>
-                    ) : (
-                      <Alert variant="warning">
-                        {locationError ? locationError : "Obteniendo tu ubicación..."}
-                      </Alert>
-                    )}
-                  </Form.Group>
+                 <Form>
+                 <Form.Label style={{color:"white"}}>Selecciona tu municipio</Form.Label>
+                 <Form.Select name="SE" onChange={recogerMunicipio}>
+                 <option value="">Seleccione una opción</option>
+                 <option value="Aguascalientes">Aguascalientes</option>
+                 <option value="Asientos">Asientos</option>
+                 <option value="Calvillo">Calvillo</option>
+                 <option value="Cosío">Cosío</option>
+                 <option value="El Llano">El Llano</option>
+                 <option value="Jesús María">Jesús María</option>
+                 <option value="Pabellón de Arteaga">Pabellón de Arteaga</option>
+                 <option value="Rincón de Romos">Rincón de Romos</option>
+                 <option value="San Francisco de los Romo">San Francisco de los Romo</option>
+                 <option value="San José de Gracia">San José de Gracia</option>
+                 <option value="Tepezala">Tepezala</option>
+                 </Form.Select>
+                 <Form.Label style={{color:"white"}}>Selecciona tu colonia</Form.Label>
+                 <Form.Control onMouseOver={pruebaDatos}>{/*De momento, solo sirve para llamar a la funcion que escribe en consola 
+                 el array de las colonias del municipio seleccionado */}
+ 
+                 </Form.Control>
+                 <Form.Control  value={Colonia} onChange={recogerColonia}>
+                 </Form.Control>
+ 
+                 <ListGroup>
+                 {ColonyArray?.map((colonia, index) => (
+             <ListGroupItem key={index} onClick={() => recogerLista(colonia)}>
+               {colonia}
+             </ListGroupItem>
+           ))}
+                 </ListGroup>
+             </Form>
                 )}
 
                 <Button variant="primary" type="submit">
-                  Enviar Denuncia
+                  Enviar Reporte
                 </Button>
               </Form>
             </Card.Body>
