@@ -16,3 +16,16 @@ export const ReportesTotales = [
         fechaYhora:''
     }
 ]
+
+export const guardarReportes=(M,C,T,D,FH)=>{
+    const objProvicional={
+        municipio: M,
+        colonia:C,
+        tipo:T ,
+        descripcion:D,
+        fechaYhora:FH
+    }
+    ReportesTotales.push(objProvicional);
+    console.log(ReportesTotales)
+
+}

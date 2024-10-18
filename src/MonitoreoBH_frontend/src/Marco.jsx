@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Card, Container, Form, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, Card, Container, Form, ListGroup, ListGroupItem } from "react-bootstrap";
 import { TC } from "../../MonitoreoBH_backend/src/TC.js";
 import { Autobusqueda } from "../../MonitoreoBH_backend/src/Autobusqueda.js";
+import { guardarReportes } from "../../MonitoreoBH_backend/reportesRegistrados.js";
 
 export const Marco = () => {
   const [edo, setedo] = useState('');
@@ -10,6 +11,7 @@ export const Marco = () => {
   const [filteredColonies, setFilteredColonies] = useState([]);
   const [tipoIncidencia, settipoIncidencia] = useState('');
   const [descripcion, setdescripcion] = useState('');
+  const [fecha, setfecha] = useState('');
 
   const recogerMunicipio = (e) => {
     e.preventDefault();
@@ -50,6 +52,11 @@ export const Marco = () => {
     setdescripcion(descripcionTemporal);
     console.log(descripcionTemporal, 'de recogerDescripcion');
   };
+  const obtenerTiempoYfecha=(e)=>{
+    e.preventDefault();
+    const date = new Date().toLocaleString();
+setfecha(date)
+  }
 
   const handleColonySearch = (e) => {
     const query = e.target.value.toLowerCase();
@@ -107,6 +114,7 @@ export const Marco = () => {
         <Form.Control onChange={recogerDescripcion}></Form.Control>
 
         </Form>
+        <Button onMouseOver={obtenerTiempoYfecha} onClick={() => guardarReportes(edo,Colonia,tipoIncidencia,descripcion,fecha)}>Registrar reporte</Button>
       </Card>
     </Container>
   );
