@@ -2,7 +2,7 @@
 //Deberiamos recibir la colonia y el municipio de Marco.jsx
 
 import { Card, Container, Form } from "react-bootstrap"
-
+import { Marco } from "./Marco"
 export const ReportDescription=()=>{
 
 
@@ -10,7 +10,7 @@ export const ReportDescription=()=>{
         <Container>
             <Card>
                 <Card.Body>
-                    <Card.Title>Agrega la descripcion del reporte de la colonia {/*Aqui va a ir la variable que importemos de la colonia*/}</Card.Title>
+                    <Card.Title>Agrega la descripcion del reporte de la colonia {}</Card.Title>
                     <Form>
                         <Form.Group>
                             <Form.Label>Colonia que seleccionaste:</Form.Label>

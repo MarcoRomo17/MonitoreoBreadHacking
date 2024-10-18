@@ -7,14 +7,9 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import {Reports} from './Reports';
 import { ReportForm } from './ReportFrom';
 import { Marco } from './Marco';
-<<<<<<< HEAD
 import { ReportDescription } from './ReportDescription';
-=======
-import { ReportForm2 } from './ReportForm2';
->>>>>>> 8dcbcb2919aea4a4dfb835400e934af037e3f6ce
 
 
 const router = createBrowserRouter([
@@ -35,15 +30,10 @@ const router = createBrowserRouter([
     element: <Marco></Marco>
   },
   {
-<<<<<<< HEAD
     path: "/RD",
     element: <ReportDescription></ReportDescription>
   }
-=======
-    path: "/RF2",
-    element: <ReportForm2></ReportForm2>
-  },
->>>>>>> 8dcbcb2919aea4a4dfb835400e934af037e3f6ce
+ 
 
 
 ]);
