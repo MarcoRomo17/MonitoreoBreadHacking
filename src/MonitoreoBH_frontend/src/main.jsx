@@ -10,6 +10,7 @@ import {
 import {Reports} from './Reports';
 import { ReportForm } from './ReportFrom';
 import { Marco } from './Marco';
+import { ReportForm2 } from './ReportForm2';
 
 
 const router = createBrowserRouter([
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/PM",
     element: <Marco></Marco>
-  }
+  },
+  {
+    path: "/RF2",
+    element: <ReportForm2></ReportForm2>
+  },
 
 
 ]);
