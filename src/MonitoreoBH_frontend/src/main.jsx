@@ -7,7 +7,6 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { ReportForm } from './ReportFrom';
 import { Marco } from './Marco';
 import { ReportDescription } from './ReportDescription';
 
@@ -17,14 +16,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App></App>,
   },
-  {
-    path: "/RF",
-    element: <ReportForm></ReportForm>
-  },
-  {
-    path: "/RF",
-    element: <ReportForm></ReportForm>
-  },
+
   {
     path: "/PM",
     element: <Marco></Marco>
