@@ -9,6 +9,8 @@ const [Colonia, setColonia] = useState('');
 const [ColonyArray, setColonyArray] = useState();
 
 
+/*<form action="" className="select"></form>*/
+
 const recogerMunicipio=(e)=>{//Recoge el estado seleccionado en el Form.Select
 e.preventDefault();
 const edoTemporal = e.target.value
@@ -40,10 +42,10 @@ const recogerLista=(colonia)=>{
 
     return(
     
-    <Container>
+    <Container style={{backgroundcolor:"black"}}>
         <Card>
             <Form>
-                <Form.Label>Selecciona tu estado</Form.Label>
+                <Form.Label>Selecciona tu municipio</Form.Label>
                 <Form.Select name="SE" onChange={recogerMunicipio}>
                 <option value="">Seleccione una opción</option>
                 <option value="Aguascalientes">Aguascalientes</option>
