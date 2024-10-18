@@ -23,6 +23,7 @@ export const ReportForm2 = () => {
   const [ColonyArray, setColonyArray] = useState();
 
 
+
   /*<form action="" className="select"></form>*/
 
   const recogerMunicipio=(e)=>{//Recoge el estado seleccionado en el Form.Select
@@ -149,7 +150,7 @@ export const ReportForm2 = () => {
                       <Card.Text>
                         Dirección: {report.address}
                       </Card.Text>
-                      <Button variant="primary" href='/Detalles'>
+                      <Button variant="outline-primary" href='/Detalles'>
                         Complementar Reporte
                       </Button>
                     </Card.Body>
@@ -167,11 +168,11 @@ export const ReportForm2 = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div className="bg-dark min-vh-100">
-        <Container className="mt-5 bg-dark ">
-          <Card style={{backgroundColor:"#4e4d4d"}}>
+      <div className="bg-dark min-vh-100" style={{width:"100%", height:"100%", background:"--bs-dark-rgb"}}>
+        <Container >
+          <Card style={{backgroundColor:"#333333"}}>
             <Card.Body>
-              <Card.Title style={{color:"white"}}>Registrar una Denuncia</Card.Title>
+              <Card.Title style={{color:"white"}}>Registrar un reporte</Card.Title>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                 <Form.Label style={{color:"white"}}>Fecha y Hora del Reporte</Form.Label>
@@ -199,7 +200,12 @@ export const ReportForm2 = () => {
                     <option value="lesiones">Lesiones</option>
                     <option value="delitos_sexuales">Intento de violacion</option>
                   </Form.Select>
-                </Form.Group>
+                </Form.Group >
+                        <Form.Group>
+                            <Form.Label style={{color: "white"}}>Describe lo que paso</Form.Label>
+                            <Form.Control placeholder="Descripcion de lo ocurrido">
+                            </Form.Control>
+                        </Form.Group>
 
                 {/* Opción para ingresar manualmente la dirección o usar ubicación actual */}
                 <Form.Group className="mb-3">

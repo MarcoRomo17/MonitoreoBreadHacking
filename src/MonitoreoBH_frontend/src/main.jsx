@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { Marco } from './Marco';
 import { ReportDescription } from './ReportDescription';
+import { ReportForm2 } from './ReportForm2';
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/RD",
     element: <ReportDescription></ReportDescription>
+  },
+  {
+    path: "/R",
+    element: <ReportForm2></ReportForm2>
   }
  
 
