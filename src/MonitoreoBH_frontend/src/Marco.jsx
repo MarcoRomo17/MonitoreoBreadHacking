@@ -72,11 +72,12 @@ setfecha(date)
     }
   };
 
+
   return (
     <Container className="m-0 p-0"fluid>
       <Card className="bg-dark min-vh-100" style={{width:"100%", height:"100%"}}>
         <Form>
-          <Form.Label style={{color:"white"}}>Selecciona tu estado</Form.Label>
+          <Form.Label style={{color:"white"}}>Selecciona el municipio</Form.Label>
           <Form.Select name="SE" onChange={recogerMunicipio}>{/**Form del municipio */}
             <option value="">Seleccione una opción</option>
             <option value="Aguascalientes">Aguascalientes</option>
@@ -92,7 +93,7 @@ setfecha(date)
             <option value="Tepezala">Tepezala</option>
           </Form.Select>
           <Form.Label style={{color:"white"}}>Ingresa la colonia</Form.Label>
-          <Form.Control value={Colonia} onChange={handleColonySearch} onMouseOver={pruebaDatos}/>{/**Form de la colonia, en el cual se tiene autocompletado */}
+          <Form.Control value={Colonia} onChange={handleColonySearch} onMouseOver={pruebaDatos} placeholder="Ingresa la colonia"/>{/**Form de la colonia, en el cual se tiene autocompletado */}
 
           <ListGroup>{/**Aqui es donde se van generando las sugerencias y se les tiene que dar click para que se guarden */}
             {filteredColonies.map((colonia, index) => (
@@ -107,15 +108,15 @@ setfecha(date)
             <option value="Robo">Robo</option>
             <option value="Accidente">Accidente</option>
             <option value="Homicidio">Homicidio</option>
-            <option value="Estafa">Estafa</option>
-            <option value="etc.">etc.</option>
+            <option value="Estafa">Extorsion</option>
+            <option value="etc.">Intento de violacion</option>
           </Form.Select>
 
         <Form.Label style={{color:"white"}}>Ingresa la descripcion del caso</Form.Label>
-        <Form.Control onChange={recogerDescripcion}></Form.Control>
+        <Form.Control onChange={recogerDescripcion} placeholder="Ingresa una descripción del reporte"></Form.Control>
 
         </Form>
-        <Button className="mt-6" onMouseOver={obtenerTiempoYfecha} onClick={() => guardarReportes(edo,Colonia,tipoIncidencia,descripcion,fecha)}>Registrar reporte</Button>
+        <Button style={{background: 'linear-gradient(to right, blue, red)'}} className="mt-6" onMouseOver={obtenerTiempoYfecha} onClick={() => guardarReportes(edo,Colonia,tipoIncidencia,descripcion,fecha)}>Registrar reporte</Button>
       </Card>
     </Container>
   );
