@@ -46,11 +46,11 @@ export const MostrarReporte=()=>{
 
     return (
       <>
-        <Container>
-            <Card>
+        <Container className="m-0 p-0"fluid>
+            <Card className="bg-dark min-vh-100" style={{width:"100%", height:"100%"}}>
                 <Card.Body>
-                <Card.Title>Reportes registrados</Card.Title>
-                    <Table striped bordered hover responsive>
+                <Card.Title style={{color:"white"}}>Historial de reportes</Card.Title>
+                    <Table striped bordered hover responsive className="table-primary">
                         <thead>
                         <tr>
                         {campos.map((campo) => (
