@@ -3,6 +3,7 @@ import { Button, Card, Container, Form, ListGroup, ListGroupItem } from "react-b
 import { TC } from "../../MonitoreoBH_backend/src/TC.js";
 import { Autobusqueda } from "../../MonitoreoBH_backend/src/Autobusqueda.js";
 import { guardarReportes } from "../../MonitoreoBH_backend/reportesRegistrados.js";
+import { useNavigate } from "react-router-dom";
 
 export const Marco = () => {
   const [edo, setedo] = useState('');
@@ -12,7 +13,7 @@ export const Marco = () => {
   const [tipoIncidencia, settipoIncidencia] = useState('');
   const [descripcion, setdescripcion] = useState('');
   const [fecha, setfecha] = useState('');
-
+const navigate=useNavigate()
   const recogerMunicipio = (e) => {
     e.preventDefault();
     const edoTemporal = e.target.value;
@@ -117,6 +118,7 @@ setfecha(date)
 
         </Form>
         <Button style={{background: 'linear-gradient(to right, blue, red)'}} className="mt-6" onMouseOver={obtenerTiempoYfecha} onClick={() => guardarReportes(edo,Colonia,tipoIncidencia,descripcion,fecha)}>Registrar reporte</Button>
+        <Button onClick={()=>navigate('/MR')}>Ir al siguiente campo</Button>
       </Card>
     </Container>
   );

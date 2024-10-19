@@ -44,8 +44,8 @@ export const MostrarReporte=()=>{
         setColumnaEditable(columnaEditable === campo ? '' : campo); // Alterna la visibilidad del input
       };
 
-    return(
-        <>
+    return (
+      <>
         <Container>
             <Card>
                 <Card.Body>
@@ -101,5 +101,7 @@ export const MostrarReporte=()=>{
         </Container>
         
         </>
+        
+         
     )
 }
