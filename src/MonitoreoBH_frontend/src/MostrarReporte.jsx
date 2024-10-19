@@ -1,9 +1,48 @@
-import { Card, Container, Table } from "react-bootstrap"
+import { Card, Container, Table, Form, Button } from "react-bootstrap"
+import React, { useState } from 'react';
 import { ReportesTotales } from "../../MonitoreoBH_backend/reportesRegistrados"
 
 export const MostrarReporte=()=>{
 
-    console.log(ReportesTotales)
+    const [columnaEditable, setColumnaEditable] = useState('');
+
+      const [filtros, setFiltros] = useState({
+        municipio: '',
+        colonia: '',
+        tipo: '',
+        descripcion: '',
+        fechaYhora: ''
+      });
+    
+      // Manejar el cambio de valor de los filtros
+      const manejarCambioFiltro = (e) => {
+        const { name, value } = e.target;
+        setFiltros({
+          ...filtros,
+          [name]: value
+        });
+      };
+    
+      // Filtrar los reportes dinámicamente
+      const reportesFiltrados = ReportesTotales.filter((reporte) => {
+        return Object.keys(filtros).every((campo) => {
+          return filtros[campo] === '' || reporte[campo].toLowerCase().includes(filtros[campo].toLowerCase());
+        });
+      });
+
+    
+      // Campos que se utilizarán para generar los inputs y columnas
+      const campos = [
+        { label: "Municipio", name: "municipio" },
+        { label: "Colonia", name: "colonia" },
+        { label: "Tipo de reporte", name: "tipo" },
+        { label: "Descripción", name: "descripcion" },
+        { label: "Fecha en que se realizó", name: "fechaYhora" }
+      ];
+      
+      const manejarClickEncabezado = (campo) => {
+        setColumnaEditable(columnaEditable === campo ? '' : campo); // Alterna la visibilidad del input
+      };
 
     return(
         <>
@@ -11,31 +50,52 @@ export const MostrarReporte=()=>{
             <Card>
                 <Card.Body>
                 <Card.Title>Reportes registrados</Card.Title>
-                <Table>
-                    <thead>
+                    <Table striped bordered hover responsive>
+                        <thead>
                         <tr>
-                            <th>Municipio</th>
-                            <th>Colonia</th>
-                            <th>Tipo de reporte</th>
-                            <th>Descripcion</th>
-                            <th>Fecha en que se realizó</th>
+                        {campos.map((campo) => (
+                            <th key={campo.name}> 
+                            {campo.label}
+                            <Button
+                              variant="light"
+                              size="sm"
+                              onClick={() => manejarClickEncabezado(campo.name)}
+                              style={{ marginLeft: '10px' }}
+                            >
+                              🔍
+                            </Button>
+                                {columnaEditable === campo.name && (
+                                <Form.Control
+                                    type="text"
+                                    placeholder={`Filtrar por ${campo.label.toLowerCase()}`}
+                                    name={campo.name}
+                                    value={filtros[campo.name]}
+                                    onChange={manejarCambioFiltro}
+                                    style={{ marginTop: '10px' }} // Espaciado entre el encabezado y el input
+                                />
+                                )}
+                            </th>
+                            ))}
                         </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            ReportesTotales.map((reporte)=>(
-                                <tr>
-                                <td>{reporte.municipio}</td>
-                                <td>{reporte.colonia}</td>
-                                <td>{reporte.tipo}</td>
-                                <td>{reporte.descripcion}</td>
-                                <td>{reporte.fechaYhora}</td>
-
-                                </tr>
+                        </thead>
+                        <tbody>
+                        {reportesFiltrados.length > 0 ? (
+                            reportesFiltrados.map((reporte, index) => (
+                            <tr key={index}>
+                                {campos.map((campo) => (
+                                <td key={campo.name}>
+                                    <div>{reporte[campo.name]}</div>
+                                </td>
+                                ))}
+                            </tr>
                             ))
-                        }
-                    </tbody>
-                </Table>
+                        ) : (
+                            <tr>
+                            <td colSpan={campos.length}>No se encontraron reportes para estos filtros.</td>
+                            </tr>
+                        )}
+                        </tbody>
+                    </Table>
                 </Card.Body>
             </Card>
         </Container>
