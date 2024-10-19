@@ -8,10 +8,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Marco } from './Marco';
-import { mostrarReporte } from './mostrarReporte';
-
 import { ReportDescription } from './ReportDescription';
 import { ReportForm2 } from './ReportForm2';
+import { MostrarReporte } from './MostrarReporte';
 
 
 const router = createBrowserRouter([
@@ -34,8 +33,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/MR",
-    element: <mostrarReporte></mostrarReporte>
+    element: <MostrarReporte></MostrarReporte>
   },
+ 
  
 
 

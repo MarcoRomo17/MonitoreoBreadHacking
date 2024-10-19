@@ -1,7 +1,9 @@
 import { Card, Container, Table } from "react-bootstrap"
 import { ReportesTotales } from "../../MonitoreoBH_backend/reportesRegistrados"
 
-export const mostrarReporte=()=>{
+export const MostrarReporte=()=>{
+
+    console.log(ReportesTotales)
 
     return(
         <>
