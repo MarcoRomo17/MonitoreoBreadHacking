@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -11,6 +12,7 @@ import { Marco } from './Marco';
 import { ReportDescription } from './ReportDescription';
 import { ReportForm2 } from './ReportForm2';
 import { MostrarReporte } from './MostrarReporte';
+import {NLogin }from './Login';
 
 
 const router = createBrowserRouter([
@@ -35,6 +37,11 @@ const router = createBrowserRouter([
     path: "/MR",
     element: <MostrarReporte></MostrarReporte>
   },
+  {
+    path: "/L",
+    element: <NLogin></NLogin>
+  }
+  
  
  
 

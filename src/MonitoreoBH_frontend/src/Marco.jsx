@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Button, Card, Container, Form, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, Card, Container, Form, ListGroup, ListGroupItem, Navbar } from "react-bootstrap";
 import { TC } from "../../MonitoreoBH_backend/src/TC.js";
 import { Autobusqueda } from "../../MonitoreoBH_backend/src/Autobusqueda.js";
 import { guardarReportes } from "../../MonitoreoBH_backend/reportesRegistrados.js";
 import { useNavigate } from "react-router-dom";
+
 
 export const Marco = () => {
   const [edo, setedo] = useState('');
