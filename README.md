@@ -1,4 +1,12 @@
-# `MonitoreoBH`
+# `IC-Report: MonitoreoBH`
+
+##  `Introduccion`
+IC-Report es una aplicacion web que con base en informacion recolectada por el servicio del 911 puede ayudar a generar de forma mas rapida y efectiva puntos de monitoreo, optimizando los procesos para ello.
+
+## `¿Cómo funciona?`
+El sistema funciona con ICP implementado por AZLE, mientras que a su vez toda esta informacion se gardara y sera almacenada en Blockchain. Basicamente tras recibir una llamda, confirmar la veracidad de la misma y el reporte que se realizo atravez de ella, el servicio del 911 podra proceder a agilizar la generacion de un reporte al repecto, lo que ayudara a su vez con la deteccion de puntos de monitoreo. 
+
+## `Project Info`
 
 Welcome to your new `MonitoreoBH` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
 
